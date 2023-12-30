@@ -1,30 +1,50 @@
-# React + TypeScript + Vite
+# Canvasify
+static websites with ease using intuitive drag-and-drop functionality!
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Features
 
-Currently, two official plugins are available:
+* **Drag-and-Drop Interface**: Effortlessly create websites by dragging and dropping text and image elements.
+* **Customizable Content**: Edit text and change images after they're placed on the website.
+* **Local Storage**: Save website progress and resume editing later.
+* **Visual Design**: Attractive and user-friendly interface for a seamless creation experience.
+* **Independent Running**:  Ability to run the edited website locally, without requiring the builder.
+* **Cloud Hosting**: Option to host the created website on various cloud platforms.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Tech Stack
 
-## Expanding the ESLint configuration
+Front-end: React.js, TypeScript, Tailwindcss
+Drag-and-Drop Library: React-Draggable
+Local Storage: localStorage API
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+### Project Setup
+Clone the repository:
+```Bash
+git clone https://github.com/<your-username>/drag-and-drop-website-builder.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Install dependencies:
+```Bash
+cd drag-and-drop-website-builder
+pnpm install
+```
+### Start the development server:
+```Bash
+pnpm run dev
+```
+
+### Usage
+
+* Access the website builder in your browser.
+* Choose elements from the toolbar (text or image).
+* Drag and drop them onto the designated website section.
+* Edit text and images as needed.
+* Click "Save" to store the website structure in local storage.
+* Run the edited website independently or host it on a cloud platform.
+
+### Key Components
+
+* Toolbar: Contains draggable text and image elements.
+* Website Section: The area where elements are dropped and arranged.
+* Text Editor: Allows for text editing after elements are dropped.
+* Image Uploader: Enables image selection and replacement.
+* Save Button: Triggers website saving to local storage.
