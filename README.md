@@ -1,5 +1,10 @@
 # Canvasify
 static websites with ease using intuitive drag-and-drop functionality!
+### Light mode Canvasify
+<img src="./light-mode.png">
+
+### Dark mode Canvasify
+<img src="./dark-mode.png">
 
 ### Features
 
