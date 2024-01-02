@@ -46,7 +46,6 @@ const Navbar = ({ handleAddText, handleImageUpload, saveDocument }: NavbarProps)
                             <label
                                 htmlFor='upload-button'
                                 className='flex flex-row items-center justify-center w-[50px] p-3 rounded-xl gap-1 hover:border dark:hover:bg-dark-500 hover:bg-offwhite'
-                                onChange={handleImageUpload}
                             >
                                 <img
                                     src="src/assets/icons/add-image.png"
