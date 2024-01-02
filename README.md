@@ -30,13 +30,13 @@ Local Storage: localStorage API
 Clone the repository:
 
 ```Bash
-git clone https://github.com/<your-username>/drag-and-drop-website-builder.git
+git clone https://github.com/Zeref101/Runon-pvt-ltd-Canvasify.git
 ```
 
 ### Install dependencies:
 
 ```Bash
-cd drag-and-drop-website-builder
+cd Runon-pvt-ltd-Canvasify
 pnpm install
 ```
 
