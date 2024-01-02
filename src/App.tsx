@@ -5,7 +5,8 @@ import Draggable, { DraggableEvent, DraggableData } from 'react-draggable';
 import { Positions, ImageObject } from './types/type';
 import { Textarea } from './components/ui/textarea';
 import Navbar from './components/Navbar';
-
+import removeIcon from "./assets/icons/remove.jpg"
+import editIcon from "./assets/icons/edit.jpg"
 let g_id = -1;
 
 interface IPosition {
@@ -178,7 +179,7 @@ function App() {
               <div className='flex justify-between m-2'>
 
                 <img
-                  src="src/assets/icons/remove.jpg"
+                  src={removeIcon}
                   alt="remove"
                   onClick={() => handleRemove(image.id)}
                   className='dark:invert w-[20px] cursor-pointer'
@@ -186,7 +187,7 @@ function App() {
 
                 <label htmlFor="edit-image">
                   <img
-                    src="src/assets/icons/edit.jpg"
+                    src={editIcon}
                     alt="edit"
                     className='dark:invert w-[20px] cursor-pointer'
                   />

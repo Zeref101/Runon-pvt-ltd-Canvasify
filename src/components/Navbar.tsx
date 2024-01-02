@@ -6,6 +6,10 @@ import {
 } from "@/components/ui/tooltip"
 import Theme from "./Theme"
 
+import textIcon from "../assets/icons/text-icon.png"
+import imageIcon from "../assets/icons/add-image.png"
+import saveIcon from "../assets/icons/save-icon.png"
+
 interface NavbarProps {
     handleAddText: () => void;
     handleImageUpload: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -26,7 +30,7 @@ const Navbar = ({ handleAddText, handleImageUpload, saveDocument }: NavbarProps)
                                 onClick={handleAddText}
                             >
                                 <img
-                                    src="src/assets/icons/text-icon.png"
+                                    src={textIcon}
                                     alt="text-icon"
                                     className='dark:invert cursor-pointer w-[25px]'
 
@@ -48,7 +52,7 @@ const Navbar = ({ handleAddText, handleImageUpload, saveDocument }: NavbarProps)
                                 className='flex flex-row items-center justify-center w-[50px] p-3 rounded-xl gap-1 hover:border dark:hover:bg-dark-500 hover:bg-offwhite'
                             >
                                 <img
-                                    src="src/assets/icons/add-image.png"
+                                    src={imageIcon}
                                     alt="add image"
                                     className='dark:invert cursor-pointer'
 
@@ -75,7 +79,7 @@ const Navbar = ({ handleAddText, handleImageUpload, saveDocument }: NavbarProps)
                                 onClick={saveDocument}
                             >
                                 <img
-                                    src="src/assets/icons/save-icon.png"
+                                    src={saveIcon}
                                     alt="add image"
                                     className='dark:invert cursor-pointer'
 
