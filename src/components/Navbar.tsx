@@ -21,7 +21,7 @@ interface NavbarProps {
 const Navbar = ({ handleAddText, handleImageUpload, saveDocument }: NavbarProps) => {
     return (
         <div className='flex w-full justify-center items-center h-[56px] z-50 m-4 '>
-            <nav className='flex rounded-lg px-1 dark:bg-dark-300 bg-white shadow-light-400 dark:shadow-dark-100'>
+            <nav className='flex rounded-lg px-1 dark:bg-dark-300 bg-white shadow-lg shadow-light-400 dark:shadow-dark-100'>
                 <TooltipProvider >
                     <Tooltip>
                         <TooltipTrigger>
