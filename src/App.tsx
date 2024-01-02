@@ -69,7 +69,7 @@ function App() {
   // IMAGE STOP DRAG
 
   const handleStopRnd = (id: number, e: DraggableEvent, data: DraggableData): void => {
-    console.log('Drag stopped.');
+    console.log(e)
     setPositionsRnd(prev => ({
       ...prev,
       [id]: {
@@ -85,6 +85,7 @@ function App() {
   // IMAGE ON STOP RESIZE
 
   const handleResizeStop = (id: number, e: DraggableEvent, direction: string, ref: HTMLElement, delta: { width: number, height: number }, position: IPosition): void => {
+    console.log(e, direction, delta);
     const newWidth = ref.offsetWidth;
     const newHeight = ref.offsetHeight;
     setPositionsRnd(prev => ({
