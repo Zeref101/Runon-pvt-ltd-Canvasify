@@ -9,5 +9,5 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  base: "/vite-deploy/",
+  base: "/Runon-pvt-ltd-Canvasify/",
 });
