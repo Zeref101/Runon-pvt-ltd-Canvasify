@@ -1,12 +1,17 @@
 import { useState } from 'react';
 import { Rnd } from 'react-rnd';
-import Draggable from 'react-draggable';
+import Draggable, { DraggableEvent, DraggableData } from 'react-draggable';
 // import { Button } from './components/ui/button';
 import { Positions, ImageObject } from './types/type';
 import { Textarea } from './components/ui/textarea';
 import Navbar from './components/Navbar';
 
 let g_id = -1;
+
+interface IPosition {
+  x: number;
+  y: number;
+}
 
 function App() {
 
@@ -21,10 +26,11 @@ function App() {
 
   // TEXTS DRAG
 
-  const handleDrag = (event, data) => {
-    setPositions(data);
+  const handleDrag = (id: number, event: DraggableEvent, data: DraggableData) => {
+    console.log(event)
+    console.log(typeof (data))
+    setPositions(prevPositions => ({ ...prevPositions, [id]: { x: data.x, y: data.y } }));
   };
-
 
   // ADD TEXT
   const handleAddText = () => {
@@ -32,39 +38,37 @@ function App() {
   };
 
   // TEXT CHANGE
-  const handleTextChange = (id, event) => {
+  const handleTextChange = (id: number, event: React.ChangeEvent<HTMLTextAreaElement>): void => {
     setTexts(texts.map(text => text.id === id ? { ...text, text: event.target.value } : text));
-
   };
   // EDIT TEXT
-  const handleTextDoubleClick = (id) => {
+  const handleTextDoubleClick = (id: number): void => {
     setTexts(texts.map(text => text.id === id ? { ...text, isEditing: true } : text));
   };
+
   // TEXT ON BLUR
-  const handleTextBlur = (id) => {
+  const handleTextBlur = (id: number): void => {
     setTexts(texts.map(text => text.id === id ? { ...text, isEditing: false } : text));
   };
-  // TEXT ON ENTER KEY
-  const handleEnterKey = (id, key) => {
-    if (key === "Enter") {
 
+  // TEXT ON ENTER KEY
+  const handleEnterKey = (id: number, key: string): void => {
+    if (key === "Enter") {
       setTexts(texts.map(text => text.id === id ? { ...text, isEditing: false } : text));
     }
-  }
+  };
 
   // IMAGE UPLOAD
-  const handleImageUpload = (event) => {
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>): void => {
     if (event.target.files && event.target.files.length > 0) {
       setImages([...images, { id: g_id + 1, url: URL.createObjectURL(event.target.files[0]) }]);
       g_id = g_id + 1;
-
-
     }
   };
 
   // IMAGE STOP DRAG
 
-  const handleStopRnd = (id, e, data) => {
+  const handleStopRnd = (id: number, e: DraggableEvent, data: DraggableData): void => {
     console.log('Drag stopped.');
     setPositionsRnd(prev => ({
       ...prev,
@@ -72,15 +76,15 @@ function App() {
         ...prev[id],
         x: data.x,
         y: data.y,
-        width: prev[id]?.width || 200, // Use existing width or default to 200
-        height: prev[id]?.height || 200 // Use existing height or default to 200
+        width: prev[id]?.width || 200,
+        height: prev[id]?.height || 200
       }
     }));
 
   }
   // IMAGE ON STOP RESIZE
 
-  const handleResizeStop = (id, e, direction, ref, delta, position) => {
+  const handleResizeStop = (id: number, e: DraggableEvent, direction: string, ref: HTMLElement, delta: { width: number, height: number }, position: IPosition): void => {
     const newWidth = ref.offsetWidth;
     const newHeight = ref.offsetHeight;
     setPositionsRnd(prev => ({
@@ -102,10 +106,12 @@ function App() {
 
   // EDIT IMAGE WITH ANOTHER IMAGE
   const handleReplace = (id: number, event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files[0];
-    const newImageURL = URL.createObjectURL(file);
+    if (event.target.files) {
+      const file = event.target.files[0];
+      const newImageURL = URL.createObjectURL(file);
 
-    setImages(prevImages => prevImages.map(image => image.id === id ? { ...image, url: newImageURL } : image));
+      setImages(prevImages => prevImages.map(image => image.id === id ? { ...image, url: newImageURL } : image));
+    }
   };
 
   // SAVE DOCUMENT IN localStorage and log the values
@@ -130,7 +136,7 @@ function App() {
           <Draggable
             key={id}
             position={positions[id]}
-            onDrag={(data) => handleDrag(id, data)}
+            onDrag={(event, data) => handleDrag(id, event, data)}
           >
             <div key={id}>
               {isEditing ? (
@@ -157,6 +163,8 @@ function App() {
             <Rnd
               key={image.id}
               default={{
+                x: 0,
+                y: 0,
                 width: 200,
                 height: 200,
               }}
