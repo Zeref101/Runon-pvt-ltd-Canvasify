@@ -7,8 +7,8 @@ import {
     MenubarTrigger,
 } from "@/components/ui/menubar";
 import { themes } from "@/contants";
-
-
+import sunIcon from "../assets/icons/sun.svg"
+import moonIcon from "../assets/icons/moon.svg"
 
 const Theme = () => {
     const { mode, setMode } = useTheme();
@@ -18,7 +18,7 @@ const Theme = () => {
                 <MenubarTrigger className=" data-[state=open]:bg-light-900 dark:focus:bg-dark-200 dark:data-[state=open]:bg-dark-200">
                     {mode === "light" ? (
                         <img
-                            src="src/assets/icons/sun.svg"
+                            src={sunIcon}
                             alt="sun"
                             height={20}
                             width={20}
@@ -26,7 +26,7 @@ const Theme = () => {
                         />
                     ) : (
                         <img
-                            src="src/assets/icons/moon.svg"
+                            src={moonIcon}
                             alt="sun"
                             height={20}
                             width={20}
