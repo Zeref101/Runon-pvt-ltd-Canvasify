@@ -108,9 +108,11 @@ function App() {
 
   // EDIT IMAGE WITH ANOTHER IMAGE
   const handleReplace = (id: number, event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(id)
     if (event.target.files) {
       const file = event.target.files[0];
       const newImageURL = URL.createObjectURL(file);
+      console.log(images)
 
       setImages(prevImages => prevImages.map(image => image.id === id ? { ...image, url: newImageURL } : image));
     }
@@ -160,51 +162,54 @@ function App() {
 
 
         <div>
-          {images.map((image) => (
+          {images.map((image) => {
+            console.log(image.id)
+            return (
 
-            <Rnd
-              key={image.id}
-              default={{
-                x: 0,
-                y: 0,
-                width: 200,
-                height: 200,
-              }}
-              position={positionsRnd[image.id] || { x: 0, y: 0 }}
-              onDragStop={(e, data) => handleStopRnd(image.id, e, data)}
-              size={{ width: positionsRnd[image.id]?.width, height: positionsRnd[image.id]?.height }}
-              onResizeStop={(e, direction, ref, delta, position) => handleResizeStop(image.id, e, direction, ref, delta, position)}
-            >
-              <img key={image.id} src={image.url} alt="Uploaded" className={` w-[${positionsRnd[image.id]?.width}] h-[${positionsRnd[image.id]?.height}] rounded-xl`} />
-              <div className='flex justify-between m-2'>
+              <Rnd
+                key={image.id}
+                default={{
+                  x: 0,
+                  y: 0,
+                  width: 200,
+                  height: 200,
+                }}
+                position={positionsRnd[image.id] || { x: 0, y: 0 }}
+                onDragStop={(e, data) => handleStopRnd(image.id, e, data)}
+                size={{ width: positionsRnd[image.id]?.width, height: positionsRnd[image.id]?.height }}
+                onResizeStop={(e, direction, ref, delta, position) => handleResizeStop(image.id, e, direction, ref, delta, position)}
+              >
+                <img key={image.id} src={image.url} alt="Uploaded" className={` w-[${positionsRnd[image.id]?.width}] h-[${positionsRnd[image.id]?.height}] rounded-xl`} />
+                <div className='flex justify-between m-2'>
 
-                <img
-                  src={removeIcon}
-                  alt="remove"
-                  onClick={() => handleRemove(image.id)}
-                  className='dark:invert w-[20px] cursor-pointer'
-                />
-
-                <label htmlFor="edit-image">
                   <img
-                    src={editIcon}
-                    alt="edit"
+                    src={removeIcon}
+                    alt="remove"
+                    onClick={() => handleRemove(image.id)}
                     className='dark:invert w-[20px] cursor-pointer'
                   />
 
-                  <input
-                    id='edit-image'
-                    type="file"
-                    accept="image/*"
-                    onChange={(event) => handleReplace(image.id, event)}
-                    className='hidden'
-                  />
-                </label>
-              </div>
-            </Rnd>
+                  <label htmlFor={`edit-image-${image.id}`}>
+                    <img
+                      src={editIcon}
+                      alt="edit"
+                      className='dark:invert w-[20px] cursor-pointer'
+                    />
+
+                    <input
+                      id={`edit-image-${image.id}`}
+                      type="file"
+                      accept="image/*"
+                      onChange={(event) => handleReplace(image.id, event)}
+                      className='hidden'
+                    />
+                  </label>
+                </div>
+              </Rnd>
 
 
-          ))}
+            )
+          })}
         </div >
       </div>
     </>
